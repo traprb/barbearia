@@ -1,448 +1,975 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Serviço digital exclusivo para barbearias de alto padrão. Agendamento para análise de perfil.">
-    <meta name="theme-color" content="#0a0a0a">
+    <meta name="description" content="Barbearia Exemplo Premium - Cortes modernos, barba e tratamentos estéticos masculinos em um ambiente de luxo.">
+    <title>Barbearia Exemplo Premium | Estilo & Sofisticação</title>
     
-    <!-- SEGURANÇA MÁXIMA (CSP ATUALIZADA PARA SEUS LINKS) -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self' https://fonts.googleapis.com https://fonts.gstatic.com; img-src 'self' https://images.unsplash.com https://as1.ftcdn.net https://as2.ftcdn.net https://t3.ftcdn.net data:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; script-src 'self' 'unsafe-inline';">
-
-    <title>Elite Barber Service | Exclusividade Premium</title>
-
-    <!-- Fontes Premium -->
+    <!-- Fontes: Montserrat (Títulos) e Poppins (Texto) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;800&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <!-- Ícones (FontAwesome - CDN Seguro) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
-        /* --- 1. CONFIGURAÇÕES VISUAIS --- */
+        /* =========================================
+           VARIÁVEIS & RESET
+           ========================================= */
         :root {
-            --bg-dark: #050505;
-            --bg-card: #0f0f0f;
-            --gold-main: #D4AF37;
-            --gold-bright: #F1D468;
-            --gold-dark: #8a6e18;
-            --whatsapp-color: #25D366;
-            --font-main: 'Montserrat', sans-serif;
-            --font-display: 'Playfair Display', serif;
+            --color-black: #000000;
+            --color-dark-grey: #121212;
+            --color-light-grey: #1e1e1e;
+            --color-gold: #D4AF37;
+            --color-gold-light: #F1D066;
+            --color-white: #FFFFFF;
+            --color-text-muted: #B0B0B0;
+            
+            --font-headings: 'Montserrat', sans-serif;
+            --font-body: 'Poppins', sans-serif;
+            
             --transition: all 0.4s ease;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        html { scroll-behavior: smooth; }
-        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
-            font-family: var(--font-main);
-            background-color: var(--bg-dark);
-            color: #e0e0e0;
-            line-height: 1.6;
+            font-family: var(--font-body);
+            background-color: var(--color-black);
+            color: var(--color-white);
             overflow-x: hidden;
+            line-height: 1.6;
         }
 
-        /* --- 2. UTILITÁRIOS & TIPOGRAFIA --- */
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
+        img { max-width: 100%; display: block; }
 
-        .gold-text {
-            background: linear-gradient(to right, var(--gold-main), var(--gold-bright), var(--gold-main));
-            -webkit-background-clip: text;
+        /* =========================================
+           UTILITÁRIOS & ANIMAÇÕES
+           ========================================= */
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        .section-padding {
+            padding: 100px 0;
+        }
+
+        .text-center { text-align: center; }
+        .text-gold { color: var(--color-gold); }
+
+        /* Animação de Fade-In ao Rolar */
+        .fade-in-section {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+            will-change: opacity, visibility;
+        }
+
+        .fade-in-section.is-visible {
+            opacity: 1;
+            transform: none;
+        }
+
+        /* Efeito Shimmer Dourado */
+        .shimmer-text {
+            background: linear-gradient(to right, var(--color-gold) 20%, var(--color-white) 50%, var(--color-gold) 80%);
+            background-size: 200% auto;
+            color: var(--color-gold);
             background-clip: text;
-            color: transparent; 
-            font-weight: bold;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: shine 4s linear infinite;
         }
 
-        .section-title {
-            font-family: var(--font-display);
-            font-size: 2.5rem;
-            text-align: center;
-            margin-bottom: 10px;
-            color: var(--gold-main);
+        @keyframes shine {
+            to { background-position: 200% center; }
         }
 
-        .btn {
+        /* Botões Premium */
+        .btn-gold {
             display: inline-block;
-            padding: 15px 35px;
-            background: linear-gradient(135deg, var(--gold-dark), var(--gold-main));
-            color: #000;
-            font-weight: 800;
+            padding: 12px 30px;
+            border: 1px solid var(--color-gold);
+            background: transparent;
+            color: var(--color-gold);
+            font-family: var(--font-headings);
+            font-weight: 700;
             text-transform: uppercase;
-            text-decoration: none;
+            font-size: 0.9rem;
             letter-spacing: 1px;
-            border: none;
             cursor: pointer;
             transition: var(--transition);
-            clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
         }
 
-        .btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
-            background: linear-gradient(135deg, var(--gold-main), var(--gold-bright));
+        .btn-gold::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 0%; height: 100%;
+            background: var(--color-gold);
+            z-index: -1;
+            transition: var(--transition);
         }
 
-        /* --- 3. HEADER --- */
+        .btn-gold:hover {
+            color: var(--color-black);
+        }
+
+        .btn-gold:hover::before {
+            width: 100%;
+        }
+
+        .btn-filled {
+            background: var(--color-gold);
+            color: var(--color-black);
+        }
+        .btn-filled:hover {
+            background: var(--color-gold-light);
+            border-color: var(--color-gold-light);
+        }
+
+        /* =========================================
+           HEADER & NAV
+           ========================================= */
         header {
             position: fixed;
             top: 0;
             width: 100%;
-            padding: 20px 0;
             z-index: 1000;
-            background: rgba(5, 5, 5, 0.95);
+            background: rgba(0, 0, 0, 0.85);
             backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(212, 175, 55, 0.15);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+            transition: var(--transition);
         }
 
-        .nav-container { display: flex; justify-content: space-between; align-items: center; }
-        .logo { font-family: var(--font-display); font-size: 1.5rem; font-weight: 700; color: #fff; }
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 80px;
+        }
 
-        /* --- 4. HERO --- */
-        .hero {
+        .logo {
+            font-family: var(--font-headings);
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--color-gold);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links li a {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 500;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .nav-links li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--color-gold);
+            transition: width 0.3s;
+        }
+
+        .nav-links li a:hover { color: var(--color-gold); }
+        .nav-links li a:hover::after { width: 100%; }
+
+        /* Menu Mobile Styles */
+        .burger {
+            display: none;
+            cursor: pointer;
+        }
+        .burger div {
+            width: 25px;
+            height: 2px;
+            background-color: var(--color-gold);
+            margin: 5px;
+            transition: var(--transition);
+        }
+
+        /* =========================================
+           HERO SECTION
+           ========================================= */
+        #home {
             height: 100vh;
+            position: relative;
             display: flex;
             align-items: center;
             justify-content: center;
-            text-align: center;
-            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.9)), url('https://images.unsplash.com/photo-1585747860715-2ba37e788b70?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+            overflow: hidden;
+        }
+
+        /* Background Slider */
+        .hero-slider {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -1;
+        }
+
+        .slide {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
             background-size: cover;
             background-position: center;
-            background-attachment: fixed;
+            opacity: 0;
+            transition: opacity 1.5s ease-in-out;
+            filter: brightness(0.4); /* Escurecer imagens para destacar texto */
         }
 
-        .hero h1 { font-family: var(--font-display); font-size: 3.5rem; margin-bottom: 20px; }
-        .hero p { font-size: 1.2rem; margin-bottom: 40px; color: #ccc; max-width: 700px; margin-inline: auto; }
+        .slide.active { opacity: 1; }
 
-        /* --- 5. CARROSSEL OTIMIZADO --- */
-        .gallery { padding: 80px 0; background: var(--bg-card); overflow: hidden; }
-        
-        .carousel-container {
+        /* Imagens de exemplo do Unsplash */
+        .slide:nth-child(1) { background-image: url('https://images.unsplash.com/photo-1585747860715-2ba37e788b70?q=80&w=2074&auto=format&fit=crop'); }
+        .slide:nth-child(2) { background-image: url('https://images.unsplash.com/photo-1503951914205-b27cb7611a3d?q=80&w=2070&auto=format&fit=crop'); }
+        .slide:nth-child(3) { background-image: url('https://images.unsplash.com/photo-1621605815971-fbc98d665033?q=80&w=2070&auto=format&fit=crop'); }
+
+        .hero-content {
             position: relative;
-            max-width: 1000px;
+            z-index: 2;
+            text-align: center;
+            max-width: 800px;
+        }
+
+        .hero-content h1 {
+            font-family: var(--font-headings);
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .hero-content p {
+            font-size: 1.1rem;
+            color: #ddd;
+            margin-bottom: 40px;
+            font-weight: 300;
+        }
+
+        .hero-btns {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        /* =========================================
+           SERVIÇOS
+           ========================================= */
+        #servicos {
+            background-color: var(--color-dark-grey);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title h2 {
+            font-family: var(--font-headings);
+            font-size: 2.5rem;
+            text-transform: uppercase;
+            color: var(--color-white);
+            margin-bottom: 10px;
+        }
+
+        .section-title span {
+            display: block;
+            width: 60px;
+            height: 3px;
+            background-color: var(--color-gold);
             margin: 0 auto;
-            border: 1px solid #333;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
         }
 
-        .carousel-track { display: flex; transition: transform 0.5s ease-in-out; }
-        
-        .carousel-slide { min-width: 100%; height: 500px; background: #111; position: relative; }
-        
-        .carousel-slide img {
-            width: 100%; height: 100%; object-fit: cover;
-            filter: grayscale(20%); transition: filter 0.5s;
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
         }
-        .carousel-slide img:hover { filter: grayscale(0%); }
 
-        /* Loader fallback para imagens */
-        .carousel-slide::before {
-            content: 'Carregando Imagem...';
+        .service-card {
+            background: var(--color-light-grey);
+            padding: 40px 30px;
+            text-align: center;
+            border: 1px solid transparent;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .service-card:hover {
+            border-color: var(--color-gold);
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            color: var(--color-gold);
+            margin-bottom: 20px;
+        }
+
+        .service-card h3 {
+            font-family: var(--font-headings);
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: var(--color-white);
+        }
+
+        .service-card p {
+            font-size: 0.9rem;
+            color: var(--color-text-muted);
+            margin-bottom: 20px;
+        }
+
+        .price {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--color-gold);
+        }
+
+        /* =========================================
+           PROFISSIONAIS
+           ========================================= */
+        #profissionais {
+            background-color: var(--color-black);
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        .team-card {
+            background: var(--color-dark-grey);
+            overflow: hidden;
+            border-bottom: 2px solid var(--color-gold);
+        }
+
+        .team-img-wrapper {
+            width: 100%;
+            height: 350px;
+            overflow: hidden;
+        }
+
+        .team-img-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .team-card:hover .team-img-wrapper img {
+            transform: scale(1.1);
+        }
+
+        .team-info {
+            padding: 25px;
+            text-align: center;
+        }
+
+        .team-info h3 {
+            font-family: var(--font-headings);
+            color: var(--color-white);
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+        }
+
+        .team-info p {
+            color: var(--color-gold);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* =========================================
+           DEPOIMENTOS
+           ========================================= */
+        #depoimentos {
+            background-color: var(--color-dark-grey);
+            position: relative;
+        }
+        
+        /* Padrão sutil de fundo opcional */
+        #depoimentos::before {
+            content: '\f10d'; /* Quote icon fontawesome */
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
             position: absolute;
-            top: 50%; left: 50%;
-            transform: translate(-50%, -50%);
-            color: #444;
+            top: 50px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 10rem;
+            color: rgba(255, 255, 255, 0.02);
             z-index: 0;
         }
-        .carousel-slide img { position: relative; z-index: 1; }
 
-        .carousel-btn {
-            position: absolute; top: 50%; transform: translateY(-50%);
-            background: rgba(0,0,0,0.6); color: var(--gold-main);
-            border: 1px solid var(--gold-main); padding: 10px 15px;
-            cursor: pointer; z-index: 10; font-size: 1.5rem;
+        .testimonial-slider {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .testimonial-item {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .testimonial-item.active { display: block; }
+
+        .testimonial-text {
+            font-size: 1.2rem;
+            font-style: italic;
+            margin-bottom: 30px;
+            color: var(--color-white);
+        }
+
+        .client-info h4 {
+            color: var(--color-gold);
+            font-family: var(--font-headings);
+            font-size: 1rem;
+        }
+
+        .stars { color: var(--color-gold); margin-bottom: 10px; }
+
+        /* Controles do Slider */
+        .slider-dots {
+            margin-top: 30px;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+        .dot {
+            width: 12px; height: 12px;
+            background: #444;
+            border-radius: 50%;
+            cursor: pointer;
             transition: 0.3s;
         }
-        .carousel-btn:hover { background: var(--gold-main); color: #000; }
-        .prev-btn { left: 10px; } .next-btn { right: 10px; }
+        .dot.active { background: var(--color-gold); }
 
-        /* --- 6. FORMULÁRIO PREMIUM --- */
-        .booking {
-            padding: 100px 0;
-            background: radial-gradient(circle at center, #1a1a1a 0%, #000 100%);
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
-        .form-box {
-            max-width: 600px; margin: 0 auto;
-            background: rgba(10, 10, 10, 0.95);
-            padding: 40px;
-            border: 1px solid var(--gold-dark);
-            box-shadow: 0 0 40px rgba(0,0,0,0.8);
-            position: relative;
+        /* =========================================
+           CONTATO
+           ========================================= */
+        #contato {
+            background-color: var(--color-black);
         }
 
-        /* Borda Dourada Brilhante no Topo */
-        .form-box::before {
-            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 3px;
-            background: linear-gradient(90deg, var(--gold-dark), var(--gold-bright), var(--gold-dark));
+        .contact-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
         }
 
-        .form-group { margin-bottom: 20px; }
-        .form-label { display: block; margin-bottom: 8px; font-size: 0.9rem; color: var(--gold-main); }
-        
-        .form-input {
-            width: 100%; padding: 15px;
-            background: #151515; border: 1px solid #333;
-            color: #fff; font-family: var(--font-main);
-            outline: none; transition: 0.3s;
-        }
-        
-        .form-input:focus { border-color: var(--gold-main); background: #1a1a1a; box-shadow: 0 0 10px rgba(212, 175, 55, 0.1); }
-
-        /* Honeypot field (Anti-Spam Invisível) */
-        .hp-field { display: none; visibility: hidden; }
-
-        /* --- 7. BOTÃO WHATSAPP NEXT-GEN --- */
-        .wa-glow {
-            position: fixed;
-            bottom: 30px; right: 30px;
-            width: 70px; height: 70px;
-            background: var(--whatsapp-color);
-            border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-            box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
-            z-index: 2000;
-            animation: pulse-green 2s infinite;
-            transition: transform 0.3s;
-        }
-        
-        .wa-glow:hover { transform: scale(1.1); }
-        .wa-glow svg { width: 38px; height: 38px; fill: white; }
-
-        @keyframes pulse-green {
-            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
-            70% { transform: scale(1); box-shadow: 0 0 0 20px rgba(37, 211, 102, 0); }
-            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+        .contact-info h3 {
+            font-family: var(--font-headings);
+            color: var(--color-gold);
+            margin-bottom: 20px;
         }
 
-        /* --- 8. FOOTER --- */
-        footer { background: #000; padding: 40px 0; text-align: center; border-top: 1px solid #222; font-size: 0.8rem; color: #666; }
+        .info-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            gap: 15px;
+        }
 
-        /* --- RESPONSIVO --- */
-        @media (max-width: 768px) {
-            .hero h1 { font-size: 2.2rem; }
-            .carousel-slide { height: 300px; }
-            .form-box { padding: 25px; }
-            .wa-glow { width: 60px; height: 60px; bottom: 20px; right: 20px; }
-            .wa-glow svg { width: 30px; height: 30px; }
+        .info-item i {
+            color: var(--color-gold);
+            font-size: 1.2rem;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 15px;
+            background: transparent;
+            border: 1px solid #333;
+            color: var(--color-white);
+            font-family: var(--font-body);
+            transition: var(--transition);
+        }
+
+        .form-group input:focus, .form-group textarea:focus {
+            outline: none;
+            border-color: var(--color-gold);
+            background: rgba(212, 175, 55, 0.05);
+        }
+
+        /* =========================================
+           FOOTER
+           ========================================= */
+        footer {
+            background-color: #050505;
+            border-top: 1px solid #1a1a1a;
+            padding: 50px 0 20px;
+            text-align: center;
+        }
+
+        .footer-logo {
+            font-family: var(--font-headings);
+            color: var(--color-gold);
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            display: inline-block;
+        }
+
+        .social-links {
+            margin-bottom: 30px;
+        }
+
+        .social-links a {
+            color: var(--color-white);
+            font-size: 1.2rem;
+            margin: 0 10px;
+            transition: var(--transition);
+        }
+
+        .social-links a:hover { color: var(--color-gold); transform: translateY(-3px); }
+
+        .copyright {
+            font-size: 0.8rem;
+            color: #555;
+            border-top: 1px solid #111;
+            padding-top: 20px;
+        }
+
+        /* =========================================
+           MEDIA QUERIES (RESPONSIVIDADE)
+           ========================================= */
+        @media screen and (max-width: 960px) {
+            .nav-links {
+                position: absolute;
+                right: 0px;
+                height: 100vh;
+                top: 80px;
+                background-color: var(--color-dark-grey);
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                width: 60%;
+                transform: translateX(100%);
+                transition: transform 0.5s ease-in;
+                padding-top: 50px;
+                border-left: 1px solid #333;
+            }
+
+            .nav-links.nav-active {
+                transform: translateX(0%);
+            }
+
+            .nav-links li { margin: 20px 0; }
+            
+            .burger { display: block; }
+            .hero-content h1 { font-size: 2.5rem; }
+        }
+
+        @media screen and (max-width: 768px) {
+            .contact-wrapper { grid-template-columns: 1fr; }
+            .hero-content h1 { font-size: 2rem; }
+            .hero-btns { flex-direction: column; }
+            .btn-gold { width: 100%; text-align: center; }
         }
     </style>
 </head>
 <body>
 
+    <!-- Header -->
     <header>
-        <div class="container nav-container">
-            <div class="logo">SUA<span class="gold-text">MARCA</span></div>
-            <a href="#agendar" class="btn" style="padding: 10px 20px; font-size: 0.75rem;">Área do Parceiro</a>
+        <div class="container">
+            <nav>
+                <a href="#" class="logo">BARBER<span class="text-gold">PREMIUM</span></a>
+                <ul class="nav-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#servicos">Serviços</a></li>
+                    <li><a href="#equipe">Profissionais</a></li>
+                    <li><a href="#depoimentos">Depoimentos</a></li>
+                    <li><a href="#contato">Contato</a></li>
+                    <li><a href="#" class="btn-gold btn-filled" style="padding: 8px 20px;">Agendar</a></li>
+                </ul>
+                <div class="burger">
+                    <div class="line1"></div>
+                    <div class="line2"></div>
+                    <div class="line3"></div>
+                </div>
+            </nav>
         </div>
     </header>
 
-    <section class="hero">
-        <div class="hero-content">
-            <h1>Eleve Sua Barbearia ao <br><span class="gold-text">Nível da Realeza</span></h1>
-            <p>Estratégia digital exclusiva. Apenas 100 vagas.</p>
-            <a href="#agendar" class="btn">Solicitar Análise</a>
+    <!-- Hero Section -->
+    <section id="home">
+        <!-- Carrossel de Background -->
+        <div class="hero-slider">
+            <div class="slide active"></div>
+            <div class="slide"></div>
+            <div class="slide"></div>
+        </div>
+
+        <div class="container hero-content fade-in-section">
+            <h1 class="shimmer-text">Estilo Exclusivo <br>Para O Homem Moderno</h1>
+            <p>Mais que um corte, uma experiência de luxo. Cuidados premium para cabelo e barba em um ambiente sofisticado.</p>
+            <div class="hero-btns">
+                <a href="#contato" class="btn-gold btn-filled">Agendar Agora</a>
+                <a href="#servicos" class="btn-gold">Ver Serviços</a>
+            </div>
         </div>
     </section>
 
-    <!-- Seção Carrossel -->
-    <section class="gallery">
+    <!-- Serviços -->
+    <section id="servicos" class="section-padding">
         <div class="container">
-            <h2 class="section-title">Resultados Visuais</h2>
-            <p style="text-align: center; color: #666; margin-bottom: 30px; text-transform: uppercase; letter-spacing: 2px;">Padrão Internacional</p>
+            <div class="section-title fade-in-section">
+                <h2>Nossos Serviços</h2>
+                <span></span>
+            </div>
             
-            <div class="carousel-container">
-                <button class="carousel-btn prev-btn" id="prevBtn">&#10094;</button>
-                <div class="carousel-track" id="track">
-                    <!-- Link 1: Unsplash (Genérico Luxo) -->
-                    <div class="carousel-slide">
-                        <img src="https://images.unsplash.com/photo-1503951914875-452162b7f30a?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Cadeira Barbeiro">
+            <div class="services-grid">
+                <!-- Card 1 -->
+                <div class="service-card fade-in-section">
+                    <div class="service-icon"><i class="fas fa-cut"></i></div>
+                    <h3>Corte Premium</h3>
+                    <p>Lavagem, corte personalizado, finalização e penteado com produtos importados.</p>
+                    <div class="price">R$ 80,00</div>
+                </div>
+                <!-- Card 2 -->
+                <div class="service-card fade-in-section">
+                    <div class="service-icon"><i class="fas fa-user-tie"></i></div>
+                    <h3>Barba Real</h3>
+                    <p>Toalha quente, massagem facial, esfoliação e alinhamento perfeito com navalha.</p>
+                    <div class="price">R$ 60,00</div>
+                </div>
+                <!-- Card 3 -->
+                <div class="service-card fade-in-section">
+                    <div class="service-icon"><i class="fas fa-spray-can"></i></div>
+                    <h3>Selagem Capilar</h3>
+                    <p>Tratamento profundo para hidratação e redução de volume dos fios.</p>
+                    <div class="price">R$ 120,00</div>
+                </div>
+                <!-- Card 4 -->
+                <div class="service-card fade-in-section">
+                    <div class="service-icon"><i class="fas fa-wine-glass"></i></div>
+                    <h3>Dia do Noivo</h3>
+                    <p>Pacote completo com corte, barba, limpeza de pele e open bar.</p>
+                    <div class="price">Sob Consulta</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Profissionais -->
+    <section id="equipe" class="section-padding">
+        <div class="container">
+            <div class="section-title fade-in-section">
+                <h2>Especialistas</h2>
+                <span></span>
+            </div>
+
+            <div class="team-grid">
+                <!-- Profissional 1 -->
+                <div class="team-card fade-in-section">
+                    <div class="team-img-wrapper">
+                        <!-- Imagem genérica de barbeiro -->
+                        <img src="https://images.unsplash.com/photo-1599351431202-1e0f0137899a?q=80&w=1888&auto=format&fit=crop" alt="Barbeiro Sênior">
                     </div>
-                    <!-- Link 2: Seu Link Adobe Stock (Autorizado no CSP) -->
-                    <div class="carousel-slide">
-                        <img src="https://as1.ftcdn.net/v2/jpg/01/15/72/72/1000_F_115727227_uPCZW7xN0c3Bqis09eOu2Yqe2xPDzFSk.jpg" alt="Barbeiro Cortando">
-                    </div>
-                    <!-- Link 3: Seu Link Adobe Stock (Autorizado no CSP) -->
-                    <div class="carousel-slide">
-                        <img src="https://as1.ftcdn.net/v2/jpg/01/91/16/70/1000_F_191167041_ycvaYZfXu19ZZsJLpcD2kxIxozaTFgQ4.jpg" alt="Ferramentas Douradas">
-                    </div>
-                    <!-- Link 4: Seu Link Adobe Stock (Autorizado no CSP) -->
-                    <div class="carousel-slide">
-                        <img src="https://as2.ftcdn.net/v2/jpg/09/18/21/73/1000_F_918217336_l0EEk33nLZBehxwK3ZPFknlchAczMn6G.jpg" alt="Interior Luxo">
+                    <div class="team-info">
+                        <h3>Carlos Mendes</h3>
+                        <p>Master Barber</p>
                     </div>
                 </div>
-                <button class="carousel-btn next-btn" id="nextBtn">&#10095;</button>
+                <!-- Profissional 2 -->
+                <div class="team-card fade-in-section">
+                    <div class="team-img-wrapper">
+                        <img src="https://images.unsplash.com/photo-1622286342621-4bd786c2447c?q=80&w=2070&auto=format&fit=crop" alt="Especialista em Barba">
+                    </div>
+                    <div class="team-info">
+                        <h3>André Silva</h3>
+                        <p>Visagista</p>
+                    </div>
+                </div>
+                <!-- Profissional 3 -->
+                <div class="team-card fade-in-section">
+                    <div class="team-img-wrapper">
+                        <img src="https://images.unsplash.com/photo-1605497788044-5a32c7078486?q=80&w=1887&auto=format&fit=crop" alt="Barbeiro">
+                    </div>
+                    <div class="team-info">
+                        <h3>Ricardo Fox</h3>
+                        <p>Estilista Capilar</p>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Seção Formulário -->
-    <section class="booking" id="agendar">
+    <!-- Depoimentos -->
+    <section id="depoimentos" class="section-padding">
         <div class="container">
-            <div class="form-box">
-                <h2 class="section-title" style="font-size: 2rem;">Aplicação para Vaga</h2>
-                <p style="text-align: center; color: #aaa; margin-bottom: 30px;">Preencha para agendar via WhatsApp.</p>
-                
-                <form id="scheduleForm">
-                    <!-- Campo Honeypot (Anti-Hacker: Se preenchido, o envio é bloqueado) -->
-                    <input type="text" name="bot-field" class="hp-field" tabindex="-1" autocomplete="off">
+            <div class="section-title fade-in-section">
+                <h2>O que dizem</h2>
+                <span></span>
+            </div>
 
-                    <div class="form-group">
-                        <label class="form-label">Seu Nome</label>
-                        <input type="text" class="form-input" id="name" required placeholder="Ex: Ricardo Silva">
+            <div class="testimonial-slider fade-in-section">
+                <!-- Slide 1 -->
+                <div class="testimonial-item active">
+                    <div class="stars">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
                     </div>
-
-                    <div class="form-group">
-                        <label class="form-label">Nome da Barbearia</label>
-                        <input type="text" class="form-input" id="barberName" required placeholder="Ex: Barbearia Imperial">
+                    <p class="testimonial-text">"Ambiente sensacional e atendimento de primeira. O corte ficou exatamente como eu queria. Recomendo demais!"</p>
+                    <div class="client-info">
+                        <h4>Rafael Nogueira</h4>
                     </div>
-
-                    <div class="form-group">
-                        <label class="form-label">WhatsApp (com DDD)</label>
-                        <input type="tel" class="form-input" id="whatsapp" required placeholder="Ex: 11999999999" pattern="[0-9]*">
+                </div>
+                <!-- Slide 2 -->
+                <div class="testimonial-item">
+                    <div class="stars">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
                     </div>
-
-                    <div class="form-group">
-                        <label class="form-label">Cidade / Estado</label>
-                        <input type="text" class="form-input" id="city" required placeholder="Ex: São Paulo - SP">
+                    <p class="testimonial-text">"A melhor barbearia da cidade. A toalha quente e a massagem fazem toda a diferença. Vale cada centavo."</p>
+                    <div class="client-info">
+                        <h4>Diego Costa</h4>
                     </div>
-
-                    <!-- Linha Dupla: Data e Hora -->
-                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
-                        <div class="form-group">
-                            <label class="form-label">Data</label>
-                            <input type="date" class="form-input" id="date" required>
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label">Horário</label>
-                            <select id="time" class="form-input" required>
-                                <option value="">Escolha...</option>
-                                <option value="Manhã (09h-12h)">Manhã (09h-12h)</option>
-                                <option value="Tarde (13h-18h)">Tarde (13h-18h)</option>
-                                <option value="Noite (19h-21h)">Noite (19h-21h)</option>
-                            </select>
-                        </div>
+                </div>
+                <!-- Slide 3 -->
+                <div class="testimonial-item">
+                    <div class="stars">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
                     </div>
+                    <p class="testimonial-text">"Profissionais muito qualificados e cerveja gelada. O sistema de agendamento funciona muito bem."</p>
+                    <div class="client-info">
+                        <h4>Lucas Martins</h4>
+                    </div>
+                </div>
 
-                    <button type="submit" class="btn" style="width: 100%; text-align: center; margin-top: 10px;">
-                        AGENDAR AGORA
-                    </button>
-                    <p style="font-size: 0.75rem; color: #666; text-align: center; margin-top: 15px;">
-                        🔒 Seus dados serão enviados criptografados para o WhatsApp oficial.
-                    </p>
-                </form>
+                <!-- Dots -->
+                <div class="slider-dots">
+                    <span class="dot active" onclick="currentSlide(1)"></span>
+                    <span class="dot" onclick="currentSlide(2)"></span>
+                    <span class="dot" onclick="currentSlide(3)"></span>
+                </div>
             </div>
         </div>
     </section>
 
+    <!-- Contato -->
+    <section id="contato" class="section-padding">
+        <div class="container">
+            <div class="contact-wrapper fade-in-section">
+                <!-- Informações -->
+                <div class="contact-info">
+                    <h3>Agende seu Horário</h3>
+                    <p style="margin-bottom: 30px; color: #aaa;">Entre em contato conosco ou preencha o formulário. Responderemos o mais breve possível.</p>
+                    
+                    <div class="info-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Av. da Elegância, 1000 - Jardins, SP</span>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-phone-alt"></i>
+                        <span>(11) 99999-9999</span>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-envelope"></i>
+                        <span>contato@barbeariaexemplo.com</span>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-clock"></i>
+                        <span>Seg - Sáb: 09:00 - 20:00</span>
+                    </div>
+                </div>
+
+                <!-- Formulário -->
+                <div class="contact-form">
+                    <form action="#" method="POST" id="bookingForm">
+                        <div class="form-group">
+                            <input type="text" name="nome" placeholder="Seu Nome" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="tel" name="telefone" placeholder="Seu Telefone" required>
+                        </div>
+                        <div class="form-group">
+                            <textarea name="mensagem" rows="4" placeholder="Mensagem (Opcional)"></textarea>
+                        </div>
+                        <button type="submit" class="btn-gold btn-filled" style="width: 100%; border: none;">Confirmar Agendamento</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
     <footer>
         <div class="container">
-            <p>&copy; 2025 Sua Marca Services. Todos os direitos reservados.</p>
+            <a href="#" class="footer-logo">BARBER<span class="text-gold">PREMIUM</span></a>
+            <div class="social-links">
+                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" aria-label="Whatsapp"><i class="fab fa-whatsapp"></i></a>
+            </div>
+            <div class="copyright">
+                &copy; 2023 Barbearia Exemplo Premium. Todos os direitos reservados.
+            </div>
         </div>
     </footer>
 
-    <!-- Botão WhatsApp Flutuante (Next-Gen Pulse) -->
-    <a href="https://wa.me/5511968930203?text=Ol%C3%A1%2C%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es%20sobre%20a%20consultoria%20premium." 
-       target="_blank" 
-       rel="noopener noreferrer" 
-       class="wa-glow" 
-       aria-label="Fale conosco no WhatsApp">
-        <svg viewBox="0 0 32 32">
-            <path d="M16 2C8.269 2 2 8.269 2 16c0 2.656.738 5.125 2.016 7.238L2.5 29.5l6.45-1.969C10.781 28.538 13.313 29.5 16 29.5c7.731 0 14-6.269 14-14S23.731 2 16 2zm0 25.5c-2.281 0-4.45-.644-6.325-1.763l-.45-.269-3.763 1.15 1.163-3.669-.288-.475C5.194 20.5 4.5 18.319 4.5 16c0-6.338 5.163-11.5 11.5-11.5s11.5 5.163 11.5 11.5-5.163 11.5-11.5 11.5z"/>
-        </svg>
-    </a>
-
-    <!-- Lógica Segura (Javascript Puro) -->
+    <!-- Scripts JS Puro -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             
-            /* --- LÓGICA DO CARROSSEL --- */
-            const track = document.getElementById('track');
-            const slides = Array.from(track.children);
-            const nextBtn = document.getElementById('nextBtn');
-            const prevBtn = document.getElementById('prevBtn');
-            let currentSlide = 0;
+            /* --- 1. Menu Mobile Toggle --- */
+            const burger = document.querySelector('.burger');
+            const nav = document.querySelector('.nav-links');
+            const navLinks = document.querySelectorAll('.nav-links li');
 
-            function updateCarousel() {
-                const width = slides[0].getBoundingClientRect().width;
-                track.style.transform = 'translateX(-' + (width * currentSlide) + 'px)';
+            burger.addEventListener('click', () => {
+                nav.classList.toggle('nav-active');
+                // Animação do ícone burger (opcional)
+                burger.classList.toggle('toggle');
+            });
+
+            /* --- 2. Header Scroll Effect --- */
+            const header = document.querySelector('header');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    header.style.padding = '0';
+                    header.style.background = 'rgba(0, 0, 0, 0.95)';
+                } else {
+                    header.style.background = 'rgba(0, 0, 0, 0.85)';
+                }
+            });
+
+            /* --- 3. Hero Carousel (Fade automático) --- */
+            const slides = document.querySelectorAll('.slide');
+            let currentSlideIdx = 0;
+            const slideInterval = 5000; // 5 segundos
+
+            function nextSlide() {
+                slides[currentSlideIdx].classList.remove('active');
+                currentSlideIdx = (currentSlideIdx + 1) % slides.length;
+                slides[currentSlideIdx].classList.add('active');
             }
 
-            nextBtn.addEventListener('click', () => {
-                currentSlide = (currentSlide + 1) % slides.length;
-                updateCarousel();
+            setInterval(nextSlide, slideInterval);
+
+            /* --- 4. Intersection Observer (Fade-in on Scroll) --- */
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.15 // Dispara quando 15% do elemento estiver visível
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        observer.unobserve(entry.target); // Para de observar após animar
+                    }
+                });
+            }, observerOptions);
+
+            const sections = document.querySelectorAll('.fade-in-section');
+            sections.forEach(section => {
+                observer.observe(section);
             });
 
-            prevBtn.addEventListener('click', () => {
-                currentSlide = (currentSlide - 1 + slides.length) % slides.length;
-                updateCarousel();
-            });
+            /* --- 5. Testimonial Slider --- */
+            // Expondo a função para o escopo global (window) para o onclick funcionar
+            window.currentSlide = function(n) {
+                showTestimonials(slideIndex = n);
+            }
 
-            // Autoplay (Pausa ao passar o mouse)
-            let autoPlay = setInterval(() => {
-                currentSlide = (currentSlide + 1) % slides.length;
-                updateCarousel();
-            }, 4000);
+            let slideIndex = 1;
+            
+            function showTestimonials(n) {
+                let i;
+                let testimonials = document.getElementsByClassName("testimonial-item");
+                let dots = document.getElementsByClassName("dot");
+                
+                if (n > testimonials.length) {slideIndex = 1}
+                if (n < 1) {slideIndex = testimonials.length}
+                
+                for (i = 0; i < testimonials.length; i++) {
+                    testimonials[i].style.display = "none";
+                    testimonials[i].classList.remove('active');
+                }
+                for (i = 0; i < dots.length; i++) {
+                    dots[i].className = dots[i].className.replace(" active", "");
+                }
+                
+                testimonials[slideIndex-1].style.display = "block";
+                // Pequeno timeout para permitir a animação CSS funcionar após o display block
+                setTimeout(() => {
+                    testimonials[slideIndex-1].classList.add('active');
+                }, 10);
+                
+                dots[slideIndex-1].className += " active";
+            }
 
-            track.addEventListener('mouseenter', () => clearInterval(autoPlay));
-            track.addEventListener('mouseleave', () => {
-                autoPlay = setInterval(() => {
-                    currentSlide = (currentSlide + 1) % slides.length;
-                    updateCarousel();
-                }, 4000);
-            });
-            window.addEventListener('resize', updateCarousel);
-
-
-            /* --- LÓGICA DO FORMULÁRIO WHATSAPP --- */
-            const form = document.getElementById('scheduleForm');
-
+            // Sanitização simples do form (Prevenção XSS básica no front)
+            const form = document.getElementById('bookingForm');
             form.addEventListener('submit', (e) => {
                 e.preventDefault();
-
-                // 1. Verificação Anti-Bot (Honeypot)
-                const honey = document.querySelector('.hp-field').value;
-                if (honey) return; // Se preenchido, é robô. Não faz nada.
-
-                // 2. Captura e Sanitização dos Dados
-                const name = document.getElementById('name').value.replace(/[<>]/g, "").trim(); 
-                const barber = document.getElementById('barberName').value.replace(/[<>]/g, "").trim();
-                const userWhatsapp = document.getElementById('whatsapp').value.replace(/[^0-9]/g, "");
-                const city = document.getElementById('city').value.replace(/[<>]/g, "").trim();
-                const dateRaw = document.getElementById('date').value;
-                const time = document.getElementById('time').value;
-
-                // Formatar Data (YYYY-MM-DD para DD/MM/YYYY)
-                const dateParts = dateRaw.split('-');
-                const dateFormatted = `${dateParts[2]}/${dateParts[1]}/${dateParts[0]}`;
-
-                // 3. Montagem da Mensagem para SEU Número (11968930203)
-                const myNumber = "5511968930203";
+                // Aqui entraria a lógica de envio (AJAX/Fetch)
+                // Simulando envio seguro:
+                const formData = new FormData(form);
+                let isValid = true;
                 
-                const message = `*NOVA APLICAÇÃO PREMIUM* 👑%0A%0A` +
-                                `👤 *Nome:* ${name}%0A` +
-                                `💈 *Barbearia:* ${barber}%0A` +
-                                `📱 *WhatsApp Cliente:* ${userWhatsapp}%0A` +
-                                `📍 *Cidade:* ${city}%0A` +
-                                `📅 *Data:* ${dateFormatted}%0A` +
-                                `⏰ *Horário:* ${time}%0A%0A` +
-                                `_Aguardo confirmação da análise._`;
+                for (let [key, value] of formData.entries()) {
+                    // Check simples de caracteres perigosos
+                    if (value.includes('<') || value.includes('>') || value.includes('script')) {
+                        isValid = false;
+                    }
+                }
 
-                // 4. Efeito Visual no Botão
-                const btn = form.querySelector('button');
-                const originalText = btn.innerText;
-                btn.innerText = "ABRINDO WHATSAPP...";
-                btn.style.background = "#25D366";
-
-                // 5. Redirecionamento
-                setTimeout(() => {
-                    window.open(`https://wa.me/${myNumber}?text=${message}`, '_blank');
+                if(isValid) {
+                    alert('Solicitação enviada com sucesso! Entraremos em contato.');
                     form.reset();
-                    btn.innerText = originalText;
-                    btn.style.background = ""; // Volta ao gradiente dourado
-                }, 1000);
+                } else {
+                    alert('Caracteres inválidos detectados.');
+                }
             });
 
-            // Proteção extra contra clique direito (estética)
-            document.addEventListener('contextmenu', event => event.preventDefault());
         });
     </script>
 </body>
