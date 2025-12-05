@@ -3,12 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Serviço digital exclusivo para barbearias de alto padrão. Apenas 100 vagas disponíveis para transformação premium.">
-    <meta name="robots" content="index, follow">
+    <meta name="description" content="Serviço digital exclusivo para barbearias de alto padrão. Agendamento para análise de perfil.">
     <meta name="theme-color" content="#0a0a0a">
     
-    <!-- Segurança: Content Security Policy (Básico para proteção XSS e Injeção) -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self' https://fonts.googleapis.com https://fonts.gstatic.com https://images.unsplash.com; img-src 'self' https://images.unsplash.com data:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; script-src 'self' 'unsafe-inline';">
+    <!-- SEGURANÇA MÁXIMA (CSP ATUALIZADA PARA SEUS LINKS) -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' https://fonts.googleapis.com https://fonts.gstatic.com; img-src 'self' https://images.unsplash.com https://as1.ftcdn.net https://as2.ftcdn.net https://t3.ftcdn.net data:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; script-src 'self' 'unsafe-inline';">
 
     <title>Elite Barber Service | Exclusividade Premium</title>
 
@@ -18,75 +17,53 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;800&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 
     <style>
-        /* --- CSS VARIABLES & RESET --- */
+        /* --- 1. CONFIGURAÇÕES VISUAIS --- */
         :root {
-            --color-bg: #050505;
-            --color-bg-secondary: #0f0f0f;
-            --color-text: #e0e0e0;
-            --color-gold: #D4AF37;
-            --color-gold-light: #F1D468;
-            --color-gold-dark: #AA8A25;
-            --color-error: #ff4d4d;
+            --bg-dark: #050505;
+            --bg-card: #0f0f0f;
+            --gold-main: #D4AF37;
+            --gold-bright: #F1D468;
+            --gold-dark: #8a6e18;
+            --whatsapp-color: #25D366;
             --font-main: 'Montserrat', sans-serif;
             --font-display: 'Playfair Display', serif;
-            --transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            --transition: all 0.4s ease;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        
         body {
             font-family: var(--font-main);
-            background-color: var(--color-bg);
-            color: var(--color-text);
+            background-color: var(--bg-dark);
+            color: #e0e0e0;
             line-height: 1.6;
             overflow-x: hidden;
         }
 
-        /* --- UTILITIES --- */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
+        /* --- 2. UTILITÁRIOS & TIPOGRAFIA --- */
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
 
         .gold-text {
-            color: var(--color-gold);
-            background: linear-gradient(to right, var(--color-gold), var(--color-gold-light), var(--color-gold));
+            background: linear-gradient(to right, var(--gold-main), var(--gold-bright), var(--gold-main));
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent; 
+            font-weight: bold;
         }
 
         .section-title {
             font-family: var(--font-display);
             font-size: 2.5rem;
             text-align: center;
-            margin-bottom: 1rem;
-            color: var(--color-gold);
+            margin-bottom: 10px;
+            color: var(--gold-main);
         }
 
-        .section-subtitle {
-            text-align: center;
-            font-size: 1rem;
-            color: #888;
-            margin-bottom: 3rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-
-        /* --- BUTTONS --- */
         .btn {
             display: inline-block;
             padding: 15px 35px;
-            background: linear-gradient(135deg, var(--color-gold-dark), var(--color-gold));
+            background: linear-gradient(135deg, var(--gold-dark), var(--gold-main));
             color: #000;
             font-weight: 800;
             text-transform: uppercase;
@@ -100,11 +77,11 @@
 
         .btn:hover {
             transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(212, 175, 55, 0.2);
-            background: linear-gradient(135deg, var(--color-gold), var(--color-gold-light));
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
+            background: linear-gradient(135deg, var(--gold-main), var(--gold-bright));
         }
 
-        /* --- HEADER --- */
+        /* --- 3. HEADER --- */
         header {
             position: fixed;
             top: 0;
@@ -113,352 +90,183 @@
             z-index: 1000;
             background: rgba(5, 5, 5, 0.95);
             backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.15);
         }
 
-        .nav-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+        .nav-container { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-family: var(--font-display); font-size: 1.5rem; font-weight: 700; color: #fff; }
 
-        .logo {
-            font-family: var(--font-display);
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--color-gold);
-            letter-spacing: 1px;
-        }
-
-        /* --- HERO SECTION --- */
+        /* --- 4. HERO --- */
         .hero {
             height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
-            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.8)), url('https://images.unsplash.com/photo-1585747860715-2ba37e788b70?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.9)), url('https://images.unsplash.com/photo-1585747860715-2ba37e788b70?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
-            position: relative;
         }
 
-        .hero-content {
-            max-width: 800px;
-            padding: 20px;
-            opacity: 0;
-            transform: translateY(30px);
-            animation: fadeUp 1s forwards 0.5s;
-        }
+        .hero h1 { font-family: var(--font-display); font-size: 3.5rem; margin-bottom: 20px; }
+        .hero p { font-size: 1.2rem; margin-bottom: 40px; color: #ccc; max-width: 700px; margin-inline: auto; }
 
-        .hero h1 {
-            font-family: var(--font-display);
-            font-size: 3.5rem;
-            margin-bottom: 20px;
-            line-height: 1.2;
-        }
-
-        .hero p {
-            font-size: 1.2rem;
-            margin-bottom: 40px;
-            color: #ccc;
-        }
-
-        /* --- EXCLUSIVITY SECTION (Why 100?) --- */
-        .exclusivity {
-            padding: 100px 0;
-            background-color: var(--color-bg);
-            border-bottom: 1px solid rgba(255,255,255,0.05);
-        }
-
-        .card-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-
-        .feature-card {
-            background: var(--color-bg-secondary);
-            padding: 40px;
-            border: 1px solid rgba(212, 175, 55, 0.1);
-            transition: var(--transition);
-        }
-
-        .feature-card:hover {
-            border-color: var(--color-gold);
-            transform: translateY(-10px);
-        }
-
-        .card-icon {
-            font-size: 2rem;
-            color: var(--color-gold);
-            margin-bottom: 20px;
-        }
-
-        .card-title {
-            font-size: 1.3rem;
-            margin-bottom: 15px;
-            font-weight: 600;
-        }
-
-        .highlight-number {
-            font-size: 4rem;
-            font-family: var(--font-display);
-            color: var(--color-gold);
-            opacity: 0.2;
-            position: absolute;
-            top: -20px;
-            right: 20px;
-        }
-
-        /* --- CAROUSEL --- */
-        .gallery {
-            padding: 100px 0;
-            background-color: var(--color-bg-secondary);
-            overflow: hidden;
-        }
-
+        /* --- 5. CARROSSEL OTIMIZADO --- */
+        .gallery { padding: 80px 0; background: var(--bg-card); overflow: hidden; }
+        
         .carousel-container {
             position: relative;
             max-width: 1000px;
             margin: 0 auto;
+            border: 1px solid #333;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
         }
 
-        .carousel-track {
-            display: flex;
-            transition: transform 0.5s ease-in-out;
-        }
-
-        .carousel-slide {
-            min-width: 100%;
-            height: 500px;
-        }
-
+        .carousel-track { display: flex; transition: transform 0.5s ease-in-out; }
+        
+        .carousel-slide { min-width: 100%; height: 500px; background: #111; position: relative; }
+        
         .carousel-slide img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            filter: grayscale(30%);
-            transition: filter 0.3s;
+            width: 100%; height: 100%; object-fit: cover;
+            filter: grayscale(20%); transition: filter 0.5s;
         }
+        .carousel-slide img:hover { filter: grayscale(0%); }
 
-        .carousel-slide img:hover {
-            filter: grayscale(0%);
+        /* Loader fallback para imagens */
+        .carousel-slide::before {
+            content: 'Carregando Imagem...';
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            color: #444;
+            z-index: 0;
         }
+        .carousel-slide img { position: relative; z-index: 1; }
 
         .carousel-btn {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(0,0,0,0.7);
-            color: var(--color-gold);
-            border: 1px solid var(--color-gold);
-            padding: 15px;
-            cursor: pointer;
-            z-index: 10;
+            position: absolute; top: 50%; transform: translateY(-50%);
+            background: rgba(0,0,0,0.6); color: var(--gold-main);
+            border: 1px solid var(--gold-main); padding: 10px 15px;
+            cursor: pointer; z-index: 10; font-size: 1.5rem;
+            transition: 0.3s;
         }
+        .carousel-btn:hover { background: var(--gold-main); color: #000; }
+        .prev-btn { left: 10px; } .next-btn { right: 10px; }
 
-        .prev-btn { left: 10px; }
-        .next-btn { right: 10px; }
-
-        /* --- FORM SECTION --- */
+        /* --- 6. FORMULÁRIO PREMIUM --- */
         .booking {
             padding: 100px 0;
-            background: linear-gradient(rgba(0,0,0,0.9), rgba(0,0,0,0.95)), url('https://images.unsplash.com/photo-1621605815971-fbc98d69603a?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
-            background-size: cover;
-            background-attachment: fixed;
+            background: radial-gradient(circle at center, #1a1a1a 0%, #000 100%);
         }
 
         .form-box {
-            max-width: 600px;
-            margin: 0 auto;
-            background: rgba(15, 15, 15, 0.9);
-            padding: 50px;
-            border: 1px solid var(--color-gold);
-            box-shadow: 0 0 30px rgba(0,0,0,0.8);
-        }
-
-        .form-group {
-            margin-bottom: 20px;
+            max-width: 600px; margin: 0 auto;
+            background: rgba(10, 10, 10, 0.95);
+            padding: 40px;
+            border: 1px solid var(--gold-dark);
+            box-shadow: 0 0 40px rgba(0,0,0,0.8);
             position: relative;
         }
 
+        /* Borda Dourada Brilhante no Topo */
+        .form-box::before {
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 3px;
+            background: linear-gradient(90deg, var(--gold-dark), var(--gold-bright), var(--gold-dark));
+        }
+
+        .form-group { margin-bottom: 20px; }
+        .form-label { display: block; margin-bottom: 8px; font-size: 0.9rem; color: var(--gold-main); }
+        
         .form-input {
-            width: 100%;
-            padding: 15px;
-            background: rgba(255,255,255,0.05);
-            border: 1px solid #333;
-            color: #fff;
-            font-family: var(--font-main);
-            outline: none;
-            transition: var(--transition);
-        }
-
-        .form-input:focus {
-            border-color: var(--color-gold);
-            background: rgba(255,255,255,0.1);
-        }
-
-        .form-label {
-            display: block;
-            margin-bottom: 8px;
-            font-size: 0.9rem;
-            color: var(--color-gold);
-        }
-
-        /* --- TESTIMONIALS --- */
-        .testimonials {
-            padding: 100px 0;
-            text-align: center;
+            width: 100%; padding: 15px;
+            background: #151515; border: 1px solid #333;
+            color: #fff; font-family: var(--font-main);
+            outline: none; transition: 0.3s;
         }
         
-        .quote {
-            font-family: var(--font-display);
-            font-size: 1.5rem;
-            font-style: italic;
-            margin-bottom: 20px;
-        }
-        
-        .author {
-            color: var(--color-gold);
-            font-weight: bold;
-        }
+        .form-input:focus { border-color: var(--gold-main); background: #1a1a1a; box-shadow: 0 0 10px rgba(212, 175, 55, 0.1); }
 
-        /* --- FOOTER --- */
-        footer {
-            background: #000;
-            padding: 50px 0;
-            text-align: center;
-            border-top: 1px solid #222;
-        }
+        /* Honeypot field (Anti-Spam Invisível) */
+        .hp-field { display: none; visibility: hidden; }
 
-        .footer-links a {
-            color: #666;
-            margin: 0 15px;
-            text-decoration: none;
-            font-size: 0.9rem;
-            transition: color 0.3s;
-        }
-
-        .footer-links a:hover {
-            color: var(--color-gold);
-        }
-
-        /* --- WHATSAPP FLOATING --- */
-        .whatsapp-float {
+        /* --- 7. BOTÃO WHATSAPP NEXT-GEN --- */
+        .wa-glow {
             position: fixed;
-            bottom: 30px;
-            right: 30px;
-            background-color: #25D366;
-            color: #FFF;
-            width: 60px;
-            height: 60px;
-            border-radius: 50px;
-            text-align: center;
-            font-size: 30px;
-            box-shadow: 2px 2px 10px rgba(0,0,0,0.5);
-            z-index: 1000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-decoration: none;
+            bottom: 30px; right: 30px;
+            width: 70px; height: 70px;
+            background: var(--whatsapp-color);
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
+            z-index: 2000;
+            animation: pulse-green 2s infinite;
             transition: transform 0.3s;
         }
+        
+        .wa-glow:hover { transform: scale(1.1); }
+        .wa-glow svg { width: 38px; height: 38px; fill: white; }
 
-        .whatsapp-float:hover {
-            transform: scale(1.1);
+        @keyframes pulse-green {
+            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+            70% { transform: scale(1); box-shadow: 0 0 0 20px rgba(37, 211, 102, 0); }
+            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
         }
 
-        /* --- ANIMATIONS --- */
-        @keyframes fadeUp {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
+        /* --- 8. FOOTER --- */
+        footer { background: #000; padding: 40px 0; text-align: center; border-top: 1px solid #222; font-size: 0.8rem; color: #666; }
 
-        /* --- RESPONSIVE --- */
+        /* --- RESPONSIVO --- */
         @media (max-width: 768px) {
-            .hero h1 { font-size: 2.5rem; }
-            .section-title { font-size: 2rem; }
-            .form-box { padding: 30px 20px; }
-            .nav-container { flex-direction: column; gap: 10px; }
+            .hero h1 { font-size: 2.2rem; }
             .carousel-slide { height: 300px; }
+            .form-box { padding: 25px; }
+            .wa-glow { width: 60px; height: 60px; bottom: 20px; right: 20px; }
+            .wa-glow svg { width: 30px; height: 30px; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Header -->
     <header>
         <div class="container nav-container">
-            <div class="logo">Sua<span class="gold-text">marca</span></div>
-            <a href="#agendar" class="btn" style="padding: 10px 20px; font-size: 0.8rem;">Área do Parceiro</a>
+            <div class="logo">SUA<span class="gold-text">MARCA</span></div>
+            <a href="#agendar" class="btn" style="padding: 10px 20px; font-size: 0.75rem;">Área do Parceiro</a>
         </div>
     </header>
 
-    <!-- Hero Section -->
     <section class="hero">
         <div class="hero-content">
             <h1>Eleve Sua Barbearia ao <br><span class="gold-text">Nível da Realeza</span></h1>
-            <p>Serviço digital exclusivo para gestão, marca e posicionamento. Não é para todos. É para os melhores.</p>
-            <a href="#agendar" class="btn">Garanta sua Vaga</a>
+            <p>Estratégia digital exclusiva. Apenas 100 vagas.</p>
+            <a href="#agendar" class="btn">Solicitar Análise</a>
         </div>
     </section>
 
-    <!-- About / Why 100 -->
-    <section class="exclusivity" id="sobre">
-        <div class="container">
-            <h2 class="section-title">Apenas 100 Barbearias</h2>
-            <p class="section-subtitle">Exclusividade inegociável. Qualidade suprema.</p>
-
-            <div class="card-container">
-                <div class="feature-card" style="position: relative;">
-                    <div class="highlight-number">01</div>
-                    <div class="card-icon">✦</div>
-                    <h3 class="card-title">Foco Total na Qualidade</h3>
-                    <p>Ao limitar nossos parceiros, garantimos que nossa equipe sênior dedique tempo total à sua estratégia. Não somos uma agência de massa.</p>
-                </div>
-
-                <div class="feature-card" style="position: relative;">
-                    <div class="highlight-number">02</div>
-                    <div class="card-icon">♛</div>
-                    <h3 class="card-title">Posicionamento Premium</h3>
-                    <p>Transformamos sua identidade visual e digital para atrair clientes dispostos a pagar mais pelo seu corte.</p>
-                </div>
-
-                <div class="feature-card" style="position: relative;">
-                    <div class="highlight-number">03</div>
-                    <div class="card-icon">⚔</div>
-                    <h3 class="card-title">Arquitetura Blindada</h3>
-                    <p>Sua presença digital construída com os mais altos padrões de segurança e performance. Rapidez e proteção.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Gallery / Carousel -->
+    <!-- Seção Carrossel -->
     <section class="gallery">
         <div class="container">
             <h2 class="section-title">Resultados Visuais</h2>
-            <p class="section-subtitle">O padrão que entregamos</p>
+            <p style="text-align: center; color: #666; margin-bottom: 30px; text-transform: uppercase; letter-spacing: 2px;">Padrão Internacional</p>
             
             <div class="carousel-container">
                 <button class="carousel-btn prev-btn" id="prevBtn">&#10094;</button>
                 <div class="carousel-track" id="track">
-                    <!-- Imagens Unsplash de alta qualidade (Barbearia/Luxo) -->
+                    <!-- Link 1: Unsplash (Genérico Luxo) -->
                     <div class="carousel-slide">
-                        <img src="https://images.unsplash.com/photo-1503951914875-452162b7f30a?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Cadeira de Barbeiro Premium">
+                        <img src="https://images.unsplash.com/photo-1503951914875-452162b7f30a?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Cadeira Barbeiro">
                     </div>
+                    <!-- Link 2: Seu Link Adobe Stock (Autorizado no CSP) -->
                     <div class="carousel-slide">
-                        <img src="https://as1.ftcdn.net/v2/jpg/01/15/72/72/1000_F_115727227_uPCZW7xN0c3Bqis09eOu2Yqe2xPDzFSk.jpg" alt="Barbeiro Estilizando">
+                        <img src="https://as1.ftcdn.net/v2/jpg/01/15/72/72/1000_F_115727227_uPCZW7xN0c3Bqis09eOu2Yqe2xPDzFSk.jpg" alt="Barbeiro Cortando">
                     </div>
+                    <!-- Link 3: Seu Link Adobe Stock (Autorizado no CSP) -->
                     <div class="carousel-slide">
                         <img src="https://as1.ftcdn.net/v2/jpg/01/91/16/70/1000_F_191167041_ycvaYZfXu19ZZsJLpcD2kxIxozaTFgQ4.jpg" alt="Ferramentas Douradas">
                     </div>
+                    <!-- Link 4: Seu Link Adobe Stock (Autorizado no CSP) -->
                     <div class="carousel-slide">
-                        <img src="https://as2.ftcdn.net/v2/jpg/09/18/21/73/1000_F_918217336_l0EEk33nLZBehxwK3ZPFknlchAczMn6G.jpg" alt="Interior Barbearia Luxo">
+                        <img src="https://as2.ftcdn.net/v2/jpg/09/18/21/73/1000_F_918217336_l0EEk33nLZBehxwK3ZPFknlchAczMn6G.jpg" alt="Interior Luxo">
                     </div>
                 </div>
                 <button class="carousel-btn next-btn" id="nextBtn">&#10095;</button>
@@ -466,28 +274,20 @@
         </div>
     </section>
 
-    <!-- Testimonials -->
-    <section class="testimonials">
-        <div class="container">
-            <h2 class="section-title">O Que Dizem os Parceiros</h2>
-            <div style="max-width: 800px; margin: 0 auto;">
-                <p class="quote">"Desde que entramos para o grupo das 100, nosso ticket médio dobrou. A percepção de valor da marca mudou completamente."</p>
-                <p class="author">— Roberto M., Fundador da Viking Cuts</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Booking Form -->
+    <!-- Seção Formulário -->
     <section class="booking" id="agendar">
         <div class="container">
             <div class="form-box">
                 <h2 class="section-title" style="font-size: 2rem;">Aplicação para Vaga</h2>
-                <p style="text-align: center; color: #aaa; margin-bottom: 30px;">Preencha para agendar uma análise de perfil.</p>
+                <p style="text-align: center; color: #aaa; margin-bottom: 30px;">Preencha para agendar via WhatsApp.</p>
                 
                 <form id="scheduleForm">
+                    <!-- Campo Honeypot (Anti-Hacker: Se preenchido, o envio é bloqueado) -->
+                    <input type="text" name="bot-field" class="hp-field" tabindex="-1" autocomplete="off">
+
                     <div class="form-group">
                         <label class="form-label">Seu Nome</label>
-                        <input type="text" class="form-input" id="name" required minlength="3" placeholder="Ex: João Silva">
+                        <input type="text" class="form-input" id="name" required placeholder="Ex: Ricardo Silva">
                     </div>
 
                     <div class="form-group">
@@ -496,8 +296,8 @@
                     </div>
 
                     <div class="form-group">
-                        <label class="form-label">WhatsApp com DDD</label>
-                        <input type="tel" class="form-input" id="whatsapp" required pattern="[0-9]+" placeholder="Ex: 11999999999">
+                        <label class="form-label">WhatsApp (com DDD)</label>
+                        <input type="tel" class="form-input" id="whatsapp" required placeholder="Ex: 11999999999" pattern="[0-9]*">
                     </div>
 
                     <div class="form-group">
@@ -505,43 +305,56 @@
                         <input type="text" class="form-input" id="city" required placeholder="Ex: São Paulo - SP">
                     </div>
 
-                    <div class="form-group">
-                        <label class="form-label">Data de Interesse para Reunião</label>
-                        <input type="date" class="form-input" id="date" required>
+                    <!-- Linha Dupla: Data e Hora -->
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                        <div class="form-group">
+                            <label class="form-label">Data</label>
+                            <input type="date" class="form-input" id="date" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Horário</label>
+                            <select id="time" class="form-input" required>
+                                <option value="">Escolha...</option>
+                                <option value="Manhã (09h-12h)">Manhã (09h-12h)</option>
+                                <option value="Tarde (13h-18h)">Tarde (13h-18h)</option>
+                                <option value="Noite (19h-21h)">Noite (19h-21h)</option>
+                            </select>
+                        </div>
                     </div>
 
-                    <button type="submit" class="btn" style="width: 100%; text-align: center;">Agendar Agora</button>
-                    <p style="font-size: 0.8rem; color: #666; text-align: center; margin-top: 15px;">*Seus dados estão protegidos sob criptografia de ponta.</p>
+                    <button type="submit" class="btn" style="width: 100%; text-align: center; margin-top: 10px;">
+                        AGENDAR AGORA
+                    </button>
+                    <p style="font-size: 0.75rem; color: #666; text-align: center; margin-top: 15px;">
+                        🔒 Seus dados serão enviados criptografados para o WhatsApp oficial.
+                    </p>
                 </form>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
     <footer>
         <div class="container">
-            <div class="logo" style="margin-bottom: 20px;">sua<span class="gold-text">marca</span></div>
-            <div class="footer-links">
-                <a href="#">Termos de Uso</a>
-                <a href="#">Privacidade</a>
-                <a href="#">Contato</a>
-            </div>
-            <p style="color: #444; font-size: 0.8rem; margin-top: 20px;">&copy; 2025 sua marca Services. Todos os direitos reservados.</p>
+            <p>&copy; 2025 Sua Marca Services. Todos os direitos reservados.</p>
         </div>
     </footer>
 
-    <!-- WhatsApp Sticky -->
-    <a href="https://wa.me/5511999999999" target="_blank" rel="noopener noreferrer" class="whatsapp-float" aria-label="Fale conosco no WhatsApp">
-        <svg viewBox="0 0 32 32" style="width: 35px; height: 35px; fill: white; margin-top: 2px;">
+    <!-- Botão WhatsApp Flutuante (Next-Gen Pulse) -->
+    <a href="https://wa.me/5511968930203?text=Ol%C3%A1%2C%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es%20sobre%20a%20consultoria%20premium." 
+       target="_blank" 
+       rel="noopener noreferrer" 
+       class="wa-glow" 
+       aria-label="Fale conosco no WhatsApp">
+        <svg viewBox="0 0 32 32">
             <path d="M16 2C8.269 2 2 8.269 2 16c0 2.656.738 5.125 2.016 7.238L2.5 29.5l6.45-1.969C10.781 28.538 13.313 29.5 16 29.5c7.731 0 14-6.269 14-14S23.731 2 16 2zm0 25.5c-2.281 0-4.45-.644-6.325-1.763l-.45-.269-3.763 1.15 1.163-3.669-.288-.475C5.194 20.5 4.5 18.319 4.5 16c0-6.338 5.163-11.5 11.5-11.5s11.5 5.163 11.5 11.5-5.163 11.5-11.5 11.5z"/>
         </svg>
     </a>
 
-    <!-- Scripts (Vanilla JS - Security Focused) -->
+    <!-- Lógica Segura (Javascript Puro) -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             
-            /* --- CAROUSEL LOGIC --- */
+            /* --- LÓGICA DO CARROSSEL --- */
             const track = document.getElementById('track');
             const slides = Array.from(track.children);
             const nextBtn = document.getElementById('nextBtn');
@@ -563,75 +376,74 @@
                 updateCarousel();
             });
 
-            // Auto-play seguro (para quando o usuário não estiver interagindo)
+            // Autoplay (Pausa ao passar o mouse)
             let autoPlay = setInterval(() => {
                 currentSlide = (currentSlide + 1) % slides.length;
                 updateCarousel();
-            }, 5000);
+            }, 4000);
 
             track.addEventListener('mouseenter', () => clearInterval(autoPlay));
             track.addEventListener('mouseleave', () => {
                 autoPlay = setInterval(() => {
                     currentSlide = (currentSlide + 1) % slides.length;
                     updateCarousel();
-                }, 5000);
+                }, 4000);
             });
-
             window.addEventListener('resize', updateCarousel);
 
-            /* --- FORM SECURITY & VALIDATION --- */
+
+            /* --- LÓGICA DO FORMULÁRIO WHATSAPP --- */
             const form = document.getElementById('scheduleForm');
 
             form.addEventListener('submit', (e) => {
                 e.preventDefault();
 
-                // 1. Sanitização Básica (Input Sanitization)
-                const name = document.getElementById('name').value.replace(/[<>]/g, ""); 
-                const barber = document.getElementById('barberName').value.replace(/[<>]/g, "");
-                const whatsapp = document.getElementById('whatsapp').value.replace(/[^0-9]/g, ""); // Apenas números
-                const city = document.getElementById('city').value.replace(/[<>]/g, "");
-                const date = document.getElementById('date').value;
+                // 1. Verificação Anti-Bot (Honeypot)
+                const honey = document.querySelector('.hp-field').value;
+                if (honey) return; // Se preenchido, é robô. Não faz nada.
 
-                // 2. Validação Lógica
-                if(whatsapp.length < 10) {
-                    alert("Por favor, insira um número de WhatsApp válido com DDD.");
-                    return;
-                }
+                // 2. Captura e Sanitização dos Dados
+                const name = document.getElementById('name').value.replace(/[<>]/g, "").trim(); 
+                const barber = document.getElementById('barberName').value.replace(/[<>]/g, "").trim();
+                const userWhatsapp = document.getElementById('whatsapp').value.replace(/[^0-9]/g, "");
+                const city = document.getElementById('city').value.replace(/[<>]/g, "").trim();
+                const dateRaw = document.getElementById('date').value;
+                const time = document.getElementById('time').value;
 
-                // Simulação de Envio Seguro (Aqui entraria a integração com Backend/API)
-                console.log("Dados Sanitizados Prontos para Envio:", { name, barber, whatsapp, city, date });
+                // Formatar Data (YYYY-MM-DD para DD/MM/YYYY)
+                const dateParts = dateRaw.split('-');
+                const dateFormatted = `${dateParts[2]}/${dateParts[1]}/${dateParts[0]}`;
+
+                // 3. Montagem da Mensagem para SEU Número (11968930203)
+                const myNumber = "5511968930203";
                 
-                // Feedback visual
+                const message = `*NOVA APLICAÇÃO PREMIUM* 👑%0A%0A` +
+                                `👤 *Nome:* ${name}%0A` +
+                                `💈 *Barbearia:* ${barber}%0A` +
+                                `📱 *WhatsApp Cliente:* ${userWhatsapp}%0A` +
+                                `📍 *Cidade:* ${city}%0A` +
+                                `📅 *Data:* ${dateFormatted}%0A` +
+                                `⏰ *Horário:* ${time}%0A%0A` +
+                                `_Aguardo confirmação da análise._`;
+
+                // 4. Efeito Visual no Botão
                 const btn = form.querySelector('button');
                 const originalText = btn.innerText;
-                btn.innerText = "Enviado com Sucesso!";
+                btn.innerText = "ABRINDO WHATSAPP...";
                 btn.style.background = "#25D366";
-                btn.disabled = true;
 
-                alert(`Obrigado, ${name}. Recebemos sua solicitação para a ${barber}. Nossa equipe de concierge entrará em contato pelo WhatsApp: ${whatsapp}.`);
-
+                // 5. Redirecionamento
                 setTimeout(() => {
+                    window.open(`https://wa.me/${myNumber}?text=${message}`, '_blank');
                     form.reset();
                     btn.innerText = originalText;
-                    btn.style.background = "";
-                    btn.disabled = false;
-                }, 3000);
+                    btn.style.background = ""; // Volta ao gradiente dourado
+                }, 1000);
             });
 
-            /* --- ANTI-HACKER MEASURES (Client Side) --- */
-            // Bloquear botão direito (Opcional - dissuasão básica para curiosos)
+            // Proteção extra contra clique direito (estética)
             document.addEventListener('contextmenu', event => event.preventDefault());
-
-            // Prevenção de Drag & Drop de imagens
-            document.querySelectorAll('img').forEach(img => {
-                img.addEventListener('dragstart', e => e.preventDefault());
-            });
-            
-            console.log("%c ATENÇÃO: Esta é uma área segura. Injeções de código são monitoradas.", "color: red; font-size: 20px; font-weight: bold;");
         });
     </script>
 </body>
-
 </html>
-
-
